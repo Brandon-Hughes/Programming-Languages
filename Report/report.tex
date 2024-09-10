@@ -65,6 +65,9 @@
 \title{CPSC-354 Report}
 \author{Brandon Hughes \\ Chapman University}
 
+\title{CPSC-354 Report}
+\author{Your Name  \\ Chapman University}
+
 \date{\today} 
 
 \begin{document}
@@ -72,7 +75,6 @@
 \maketitle
 
 \begin{abstract}
-%(Delete and Replace:) You can safely delete and replace the explanations in this file as they will remain available on the course website. For example, you should replace this abstract with your own. The abstract should be a short summary of the report. It should be written in a way that makes it possible to understand the purpose of the report without reading it.  
 \end{abstract}
 
 \setcounter{tocdepth}{3}
@@ -80,38 +82,16 @@
 
 \section{Introduction}\label{intro}
 
-%(Delete and Replace): This report will document your learning throughout the course. It will be a collection of your notes, homework solutions, and critical reflections on the content of the course. Something in between a semester-long take home exam and your own lecture notes.\footnote{One purpose of giving the report the form of lecture notes is that self-explanation is a technique proven to help with learning, see Chapter 6 of Craig Barton, How I Wish I'd Taught Maths, and references therein. In fact, the report can lead you from self-explanation (which is what you do for the weekly deadline) to explaining to others (which is what you do for the final submission). Another purpose is to help those of you who want to go on to graduate school to develop some basic writing skills. A report that you could proudly add to your application to graduate school (or a job application in industry) would give you full points.}
-
-%To modify this template you need to modify the source \texttt{report.tex} which is available in the course repo. For guidance on how to do this read both the source and the pdf of \texttt{latex-example.tex} which is also available in the repo. Also check out the usual resources (Google, Stackoverflow, LLM, etc). It was never as easy as now to learn a new programming lanugage (which, btw, \LaTeX{} is).
-
-%For writing \LaTeX{} with VSCode use the \href{https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop}{LaTeX Workshop} extension. 
-
-%There will be deadlines during the semester, graded mostly for completeness. That means that you will get the points if you submit in time and are on the right track, independently of whether the solutions are technically correct. You will have the opportunity to revise your work for the final submission of the full report.
-
-%The full report is due at the end of the finals week. It will be graded according to the following guidelines.
-
-%Grading  guidelines (see also below):
-%\begin{itemize}
-%\item Is typesetting and layout professional? 
-%\item Is the technical content, in particular the homework, correct?
-%\item Did the student find interesting references~\cite{bla} and cites them throughout the report?
-%\item Do the notes reflect understanding and critical thinking?
-%\item Does the report contain material related to but going beyond what we do in class?
-%\item Are the questions interesting?
-%\end{itemize}
-
-%Do not change the template (fontsize, width of margin, spacing of lines, etc) without asking your first.
-
 \section{Week by Week}\label{homework}
 
 \subsection{Week 1}
 
-\subsection*{Notes}
+\subsubsection{Notes}
 
 During this week, there was a review of Git and being introduced to Latex and Lean. Some helpful commands include git add, commit, status, and push. 
 Through the website "https://sudorealm.com/blog/how-to-write-latex-documents-with-visual-studio-code-on-mac", we set up latex to be able to complete the weekly report.
 
-\subsubsection*{Homework}
+\subsubsection{Homework}
 
 1. Finish the Natural Number Game Tutorial World. \\
 \hspace*{2em}a) Show the completed work for levels 5 through 8. \\
@@ -194,7 +174,7 @@ Through these steps, we can see that the end goal of proving reflexitivity on bo
 as they are similar steps in being able to prove the theorem. The lean proof is more straight forward because instead of proving it through a basis, inductive hypothesis, and inductive step, you only have to prove
 it through rewriting the equation so that both sides are equal. Which is done through the indutive step of the mathematics proof. 
 
-\subsubsection*{Comments and Questions}
+\subsubsection{Comments and Questions}
 
 When looking at Formal Systems from the textbook, we are given this example of an impossible puzzle to solve. 
 The MU problem, where you are given a set of rules and have to obtain MU from MI, however, its impossible because you can never end up without 
@@ -205,20 +185,20 @@ human trial and error method?
 
 \subsection{Week 2}
 
-\subsection*{Notes}
+\subsubsection{Notes}
 
 During this week, we learned in class that both Math and Lean can be seen as langauges. Math is a specification language while Lean is a programming language. A
 specification langauge is used to define the requirements and properties of a system. A Math proof can be written into Lean proof very easily since they use and
 follow the same rules when it comes to solving thoerems and problems. The difference between the two proofs however is that in Math we typically reason forwards
 from the problem to the answer, while in Lean we reason backwards from the answer to the problem. We could also do it the opposite way but it would become more
 challengening. Another idea that we learned in class is that a recursive data type, which could also be called an algebraic data type, and induction are of 
-similar processes as you define what a number is inside of a number. An example of recurssion can be seen in the Tower of Hanoi as you are solving the previous
+similar processes as you define what a number is inside of a number. An example of recursion can be seen in the Tower of Hanoi as you are solving the previous
 tree in the next tree. Tower of Hanoi are also similar to binary search trees since the amount of nodes in a amount of 'n' level of a tree, if you have a balanced
-tree is the same amount of moves it takes to solve when you have ;n' amount of disks. Lastly, we also learned that when you write a recurssive program it creates 
+tree is the same amount of moves it takes to solve when you have ;n' amount of disks. Lastly, we also learned that when you write a recursive program it creates 
 a stack behind the scenes to solve all the problems, it will always go to the one on top rather than starting back at the start of the problem. If you don't have
 a stack you could also write it on a rewriting machine.
 
-\subsubsection*{Homework}
+\subsubsection{Homework}
 
 1. Finish the Natural Number Game Addition World. \\
 \hspace*{2em}a) Show the completed work for levels 1 through 5. \\
@@ -316,9 +296,9 @@ The Lean proof written above is the exact same as the same steps in the Math pro
 Instead of having add\_zero and add\_succ, we have the definition of addition as that can be proven to add both 
 successors and zero to numbers.  
 
-\subsubsection*{Comments and Questions}
+\subsubsection{Comments and Questions}
 
-In the beginning of the reading, it takes about how recurssion is different from paradox or infinite regress, since it  never defines somethin in terms of iteself, but always in terms of simpler versions of itself. Is the only difference between a paradox and a recursively solveable problem be that it has an exit statement at its very simplest version or are there more differences? If some paradoxs were proposed recursively, would we be able to break down some harder problems into simpler version to prove if they are unsolveable logically?
+In the beginning of the reading, it takes about how recursion is different from paradox or infinite regress, since it  never defines somethin in terms of iteself, but always in terms of simpler versions of itself. Is the only difference between a paradox and a recursively solveable problem be that it has an exit statement at its very simplest version or are there more differences? If some paradoxs were proposed recursively, would we be able to break down some harder problems into simpler version to prove if they are unsolveable logically?
 
 \subsection{\ldots}
 
@@ -326,21 +306,10 @@ In the beginning of the reading, it takes about how recurssion is different from
 
 \section{Lessons from the Assignments}
 
-%(Delete and Replace): Write three pages about your individual contributions to the project.
-
-%On 3 pages you describe lessons you learned from the project. Be as technical and detailed as possible. Particularly valuable are \emph{interesting} examples where you connect concrete technical details with \emph{interesting} general observations or where the theory discussed in the lectures helped with the design or implementation of the project.
-
-%Write this section during the semester. This is approximately a quarter of apage per week and the material should come from the work you do anyway. Just keep your eyes open for interesting lessons.
-
-%Make sure that you use \LaTeX{} to structure your writing (eg by using subsections).
-
 \section{Conclusion}\label{conclusion}
 
-%(Delete and Replace): (approx 400 words) A critical reflection on the content of the course. Step back from the technical details. How does the course fit into the wider world of software engineering? What did you find most interesting or useful? What improvements would you suggest?
-
 \begin{thebibliography}{99}
-%\bibitem[BLA]{bla} Author, \href{https://en.wikipedia.org/wiki/LaTeX}{Title}, Publisher, Year.
-\bibitem[label]{citekey} Andrew Moshier, \href{https://canvas.chapman.edu/courses/66029/files/6581500?module_item_id=2280521}{Contemporary Discrete Mathematics}, M&H Publishing, 2024
+\bibitem[label]{citekey} Andrew Moshier, \href{https://canvas.chapman.edu/courses/66029/files/6581500?module_item_id=2280521}{Contemporary Discrete Mathematics}, M\&H Publishing, 2024
 \end{thebibliography}
 
 \end{document}
