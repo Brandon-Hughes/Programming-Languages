@@ -20,7 +20,7 @@
     }
     
 \usepackage{listings}
-
+\usepackage{graphicx}
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
@@ -273,14 +273,17 @@ Math Proof:\\
 \begin{align*}
   (a+b)+c&=a+(b+c) \\
 \end{align*}
-Base Case: (a+b)+0=a+(b+0)\\ 
+Base Case: $(a+b)+0=a+(b+0)$\\ 
 \begin{align*}
   (a+b)+0&=a+(b+0)\\
   a+b&=a+(b+0) & \text{ def of } +\\
   a+b&=a+b & \text{ def of } +\\
 \end{align*}
-Induction Hypothesis: (a+b)+d=a+(b+d) \\
-Induction Step: (a+b)+Sd=a+(b+Sd) \\
+
+Induction Step: $(a+b)+Sd=a+(b+Sd)$ \\
+
+Induction Hypothesis: $(a+b)+d=a+(b+d)$ \\
+
 \begin{align*}
   (a+b)+Sd&=a+(b+Sd)\\
   S((a+b)+d)&=a+(b+Sd) & \text{ def of } +\\
@@ -297,6 +300,59 @@ successors and zero to numbers.
 
 In the beginning of the reading, it takes about how recursion is different from paradox or infinite regress, since it  never defines somethin in terms of iteself, but always in terms of simpler versions of itself. Is the only difference between a paradox and a recursively solveable problem be that it has an exit statement at its very simplest version or are there more differences? If some paradoxs were proposed recursively, would we be able to break down some harder problems into simpler version to prove if they are unsolveable logically?
 
+\subsection{Week 3}
+
+\subsubsection{Homework}
+
+For this homework assignment, I used ChatGPT to explore language interoperability, which refers to how different programming languages interact with one another to create a single system or application. In modern software development and application creation, it is common for multiple programming languages to be used together to meet different kinds of functions and performance requirements. As a result, being able to integrate between these languages flawless is essential for building efficient  and reliable systems. This report goes over some of the current methods used to ensure compatibility between programming languages and investigates ways to enhance these systems further. While many languages already possess some interoperability with one another, challenges arise when trying to bridge the gaps between the languages that were not designed to work together. These challenges can lead to issues such as performance inefficiencies, data type mismatches, and increase complexity in code maintenance. By examining these difficulties, potential improvements can be seen to create more solutions for the future. Additionally, advancements in tools, frameworks, and compiler technology could further enhance interoperability efforts. By improving in ways in which programming languages collaborate, developers will be able to build more versatile, efficient, and scalable systems. Addressing these challenges and making enhancements will lead to more seamless development processes and better applications.  
+
+\url{https://github.com/Brandon-Hughes/LLM_Literature_Review}
+
+
+
+\subsection{Week 4}
+
+\subsubsection{Notes}
+
+Concrete syntax considers a program as a string in the form of a sequence of characters. This is the syntax that we are used to seeing and interacting with on a day to day basis. 
+Abstract syntax considers a program as a tree-like structure that represents the program's structure and organization. 
+An Abstract Syntax Tree (AST) is a tree representation of the abstract syntactic structure of source code written in a programming language. 
+ASTs can write type checkers, interpreters, and compilers via recursion on these algebraic data types, but translating strings into trees is very difficult.
+The main idea is that you can translate a concrete syntax (string) into a concrete syntax tree, but translating a concrete syntax tree (string) into an abstract syntax tree (tree) is very difficult.
+Parsing is about putting the parentheses in the correct position.
+A context-free grammar is a set of rules that describe how to form strings in a language.
+The purpose of a context-free grammar is to define a set of strings or a language, in which a particular string in the lanaguage can be derived from the start symbol. The symbols that will appear in the strings (terminals), are those that are enclosed in single quotes.
+Other symbols may never appear in the parsed string, but only control which strings can be derived. These are called non-terminals.
+
+
+\subsubsection{Homework}
+Using the context-free grammar: 
+\begin{align*}
+Exp &\rightarrow Exp + Exp1 \\
+Exp1 &\rightarrow Exp1 * Exp2 \\
+Exp2 &\rightarrow Integer \\
+Exp2 &\rightarrow ( Exp )  \\
+Exp &\rightarrow Exp1 \\
+Exp1 &\rightarrow Exp2 \\    
+\end{align*}
+
+Generate the abstract syntax tree for the expressions. \\
+1. 2+1 \\
+2. 1+2*3 \\
+3. 1+(2*3) \\
+4. (1+2)*3 \\
+5. 1+2*3+4*5+6 \\
+
+\noindent
+The Abstract Syntax Trees for Problems 1 through 5 are shown below:
+
+\includegraphics[width=0.8\textwidth]{img/HW4.jpg}
+
+As we can see from the image above, each of the problems can be solved by using the rules of the context-free grammar with the start symbol Exp.
+
+\subsubsection{Comments and Questions}
+
+During this week we've explored the idea of applying context-free grammar in the basics of Math and we are going to start applying that into programming languages. Besides the usage in math and programming lanaguages, are we able to see or use context-free grammar in other examples or in our lives?
 
 \subsection{\ldots}
 
