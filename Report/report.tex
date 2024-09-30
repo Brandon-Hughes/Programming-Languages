@@ -4,6 +4,7 @@
 \usetikzlibrary{automata, positioning, arrows} 
 
 \usepackage{amsthm}
+\usepackage[leqno]{amsmath}
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -24,6 +25,9 @@
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
+\usepackage{etoolbox}
+\AtBeginEnvironment{align}{\setcounter{equation}{0}}
+
 
 \lstset{frame=tb,
   language=haskell,
@@ -329,7 +333,7 @@ Other symbols may never appear in the parsed string, but only control which stri
 Using the context-free grammar: 
 \begin{align*}
 Exp &\rightarrow Exp + Exp1 \\
-Exp1 &\rightarrow Exp1 * Exp2 \\
+Exp1 &\rightarrow Exp1 \* Exp2 \\
 Exp2 &\rightarrow Integer \\
 Exp2 &\rightarrow ( Exp )  \\
 Exp &\rightarrow Exp1 \\
@@ -338,10 +342,10 @@ Exp1 &\rightarrow Exp2 \\
 
 Generate the abstract syntax tree for the expressions. \\
 1. 2+1 \\
-2. 1+2*3 \\
-3. 1+(2*3) \\
-4. (1+2)*3 \\
-5. 1+2*3+4*5+6 \\
+2. 1+2\*3 \\
+3. 1+\(2\*3\) \\
+4. \(1+2\)\*3 \\
+5. 1+2\*3+4\*5+6 \\
 
 \noindent
 The Abstract Syntax Trees for Problems 1 through 5 are shown below:
@@ -353,6 +357,73 @@ As we can see from the image above, each of the problems can be solved by using 
 \subsubsection{Comments and Questions}
 
 During this week we've explored the idea of applying context-free grammar in the basics of Math and we are going to start applying that into programming languages. Besides the usage in math and programming lanaguages, are we able to see or use context-free grammar in other examples or in our lives?
+
+\subsection{Week 5}
+
+\subsubsection{Notes}
+
+By practicing the application of context-free grammars (CFG) in a programming language, a calculator was created that took an input and broke it down into an Abstract Syntax Tree (AST) using a CFG. By breaking the expression into a AST, the problem was solved by reading through the AST to produce a correct result for the expression. This application served to practice parsing expressions into smaller pieces that are more easily read by programming languages, as well as provide an introduction to context-free grammars.
+
+The second portion of this class week focused on an introduction and tutorial of constructive logic. Through the Lean logic game, students were introduced to how to write math expressions as logic-driven trees, similar to how a CFG might break an expression into components. While the process is similar, it differs by working with logical inferences instead of numbers. The keyword "exact" is used to give the game's answer, which serves as the concluding statement. The symbol $\wedge$ denotes a logical "and," meaning the logic must follow both A and B. The logical "and" can be broken apart using the keywords ".left" and ".right" to access either the left or right item of the $\wedge$, respectively.
+
+\subsubsection{Homework}
+
+1. Finish the Lean Logic Game Tutorial World. \\
+\hspace*{2em}a) Show the completed work for levels 1 through 8. \\
+\hspace*{2em}b) For level 8, write down the proof in mathematical logic.\\
+
+1a.\\
+Level 1: If todo\_list is P, then P.
+\begin{align*}
+  \text{exact todo\_list}
+\end{align*}
+
+Level 2: If p is P and s is S, then P $\wedge$ S.
+\begin{align*}
+  \text{exact $\langle$p,s$\rangle$}
+\end{align*}
+
+Level 3: If a is A, i is I, o is O, and u is U, then A $\wedge$ I $\wedge$ O $\wedge$ U.
+\begin{align*}
+  \text{exact $\langle$a,$\langle$i,$\langle$o,u$\rangle$$\rangle$$\rangle$}
+\end{align*}
+
+Level 4: If vm is P $\wedge$ S, then P.
+\begin{align*}
+  \text{exact vm.left}
+\end{align*}
+
+Level 5: If h is P $\wedge$ Q, then Q.
+\begin{align*}
+  \text{exact vm.right}
+\end{align*}
+
+Level 6: If h1 is A $\wedge$ I and h2 is O $\wedge$ U, then A $\wedge$ U.
+\begin{align*}
+  \text{exact $\langle$h1.left,h2.right$\rangle$}
+\end{align*}
+
+Level 7: If h is (L $\wedge$ ((L $\wedge$ C) $\wedge$ L) $\wedge$ L $\wedge$ L $\wedge$ L), then C.
+\begin{align*}
+  \text{exact h.left.right.left.left.right}
+\end{align*}
+
+1b. 
+
+Level 8: If ((P $\wedge$ S) $\wedge$ A) $\wedge$ $\neg$I $\wedge$ (C $\wedge$ $\neg$O) $\wedge$ $\neg$U then A $\wedge$ C $\wedge$ P $\wedge$ S
+
+\begin{align}
+  \text{assumption1} &: ((P \wedge S) \wedge A) \wedge \neg I \wedge (C \wedge \neg O) \wedge \neg U & \text{} \\
+  A && \text{and\_left and\_right on (1)} \\
+  C && \text{and\_right and\_right and\_left and\_left on (1)} \\
+  P && \text{and\_left and\_left and\_left on (1)} \\
+  S && \text{and\_left and\_left and\_right on (1)} \\
+  A \wedge C \wedge P \wedge S && \text{and\_intro on (2) (3) (4) (5)}
+\end{align}
+
+\subsubsection{Comments and Questions}
+
+In the creation of a context-free grammar, we can see that by establishing a hierarchy through constructs like exp, exp1, exp2, etc., we can control the order of operations. How can programmers determine how deep the hierarchy should go to ensure the grammar is well-structured and the language doesn't break?
 
 \subsection{\ldots}
 
