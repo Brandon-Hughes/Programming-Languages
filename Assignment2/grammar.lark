@@ -1,0 +1,23 @@
+?start: exp
+?exp: exp1
+
+?exp1: exp2
+    | exp1 "+" exp2 -> plus
+    | exp1 "-" exp2 -> minus
+
+?exp2: exp3
+    | exp2 "*" exp3 -> times
+    | "-" exp2 -> neg
+
+?exp3: exp4
+    | exp4 "^" exp3 -> exponent
+    | "log" exp3 "base" exp4 -> log
+
+?exp4: INTEGER -> num
+    | "(" exp ")" -> paren
+
+
+INTEGER: /[0-9]+/
+
+%import common.WS
+%ignore WS
