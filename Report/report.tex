@@ -12,6 +12,7 @@
 \usepackage{color}
 \usepackage{parskip}
 \usepackage{hyperref}
+\usepackage{bookmark}
   \hypersetup{
     colorlinks = true,
     urlcolor = blue,       % color of external links using \href
@@ -425,7 +426,63 @@ Level 8: If ((P $\wedge$ S) $\wedge$ A) $\wedge$ $\neg$I $\wedge$ (C $\wedge$ $\
 
 In the creation of a context-free grammar, we can see that by establishing a hierarchy through constructs like exp, exp1, exp2, etc., we can control the order of operations. How can programmers determine how deep the hierarchy should go to ensure the grammar is well-structured and the language doesn't break?
 
-\subsection{\ldots}
+\subsection{Week 6}
+
+\subsubsection{Notes}
+
+Lambda calculus is a programming language comprised of only variables and functions. Two main portions build lambda calculus, the syntax and the semantics. The syntax is made of three constructions abstraction, application, and variables. Abstraction is taking the program and using a placeholder variable so that it can change what you use. It's the creation of general-purpose functions that can take in many different inputs but will produce a structured output. Application is how we apply functions to one another. Lastly, variables are just variables. An important part of Lambda calculus is dropping the parenthesis for easier readability. You apply the left and move to the right to solve for lambda in the same parenthesis. The next portion of Lambda calculus is the semantics or how to execute it. By executing, we are either inputting numbers into variables or simplifying them into their lowest form. When having multiple inputs and variables within the same expression, apply it in the same parentheses or the farthest lambda to the left if you only have the function in one parenthesis but multiple inputs and variables. When solving problems, you may arrive at to capture avoiding substitution, when multiple inputs are being placed into a variable, many solutions act differently here it will place it into all of them while some of them place it only into the first variable possible. To solve this, they created bound and free variables where bound variables are set within the function at the beginning, while free variables are those that are inputted. 
+
+\subsubsection{Homework}
+
+Finish the Lean Logic Game Tutorial World. Show the completed work for levels 1 through 9. \\
+
+Level 1: If bakery\_service is P $\rightarrow$ C, then C.
+\begin{align*}
+  \text{exact bakery\_service \, p}
+\end{align*}
+
+Level 2: Show that C $\rightarrow$ C.
+\begin{align*}
+  \text{exact } \lambda h \Rightarrow h
+\end{align*}
+
+Level 3: Show that I $\wedge$ S $\rightarrow$ S $\wedge$ I.
+\begin{align*}
+  \text{exact } \lambda h \Rightarrow \langle h.right , h.left\rangle
+\end{align*}
+
+Level 4: If h1 is C $\rightarrow$ A and h2 is A $\rightarrow$ S, show that C $\rightarrow$ S.
+\begin{align*}
+  \text{exact } \lambda c \Rightarrow h2 (h1 \, c)
+\end{align*}
+
+Level 5: If h1 is P $\rightarrow$ Q, h2 is Q $\rightarrow$ R, h3 is Q $\rightarrow$ T, h4 is S $\rightarrow$ T, and h5 is T $\rightarrow$ U, then U.
+\begin{align*}
+  \text{exact } h5 (h3 (h1 \, p))
+\end{align*}
+
+Level 6: If h is C $\wedge$ D $\rightarrow$ S, then C $\rightarrow$ D $\rightarrow$ S.
+\begin{align*}
+  \text{exact } \lambda c \, d \Rightarrow h \langle c, d \rangle
+\end{align*}
+
+Level 7: If h is C $\rightarrow$ D $\rightarrow$ S, then C $\wedge$ D $\rightarrow$ S.
+\begin{align*}
+  \text{exact } \lambda \langle c, d \rangle \Rightarrow h \, c \, d
+\end{align*}
+
+Level 8: If h is (S $\rightarrow$ C) $\wedge$ (S $\rightarrow$ D), then S $\rightarrow$ C $\wedge$ D.
+\begin{align*}
+  \text{exact } \lambda s \Rightarrow \langle h.left \, s, h.right \, s \rangle
+\end{align*}
+
+Level 9: Show that R $\rightarrow$ (S $\rightarrow$ R) $\wedge$ ($\neg$ S $\rightarrow$ R).
+\begin{align*}
+  \text{exact } \lambda r \Rightarrow \langle \lambda s \Rightarrow r, \lambda s \Rightarrow r \rangle
+\end{align*}
+
+\subsubsection{Comments and Questions}
+What are some alternative solutions to capture-avoiding substitution beyond using bound and free variables?
 
 \ldots
 
