@@ -484,6 +484,42 @@ Level 9: Show that R $\rightarrow$ (S $\rightarrow$ R) $\wedge$ ($\neg$ S $\righ
 \subsubsection{Comments and Questions}
 What are some alternative solutions to capture-avoiding substitution beyond using bound and free variables?
 
+\subsection{Week 7}
+
+\subsubsection{Notes}
+
+Through the usage of syntax and sematnics of lambda calculus we are able to create examples of programs that are made. Pure lambda calculus only have functions and we can use those functions to encode data types such as booleans, numbers, and lists. To define a boolean, we define that whenever a function is true it will return the first item but if it's false it will return the second item. For example, $\lambda$ m $\lambda$ n m is true because it returns the first item while $\lambda$ m $\lambda n$ n returns false due to it returning the second item. Through this we are able to get an example of how lambda calculus creates functions to get basic outputs. 
+Another example is the creation of numbers through Church numerals. We can define numbers as the amount of times a function is applied onto a variable. For example, 0 being defined as $\lambda$f $\lambda$ x x, while 1 is  $\lambda$f $\lambda$ x f x. 
+
+Lambda calculus allows us to use variable binding to name functions using the keyword let. Through this we are able to define keywords that can be used to reference a function previously defined in the code.
+
+Another idea that is explored is the implementation of recursive functions through lambda calculus. With the definition of conditionals, numbers and keywords, we are able to investigate terms that reduce (compute) to themselves. This is done through defining the function in a keyword and then using the reducing that definition of the function into itself, with the goal of having the keyword's function appear in the function again.
+
+\subsubsection{Homework}
+1. Reduce the following lambda term:
+$((\lambda m. \lambda n. m n) (\lambda f. \lambda x. f (f x))) (\lambda f. \lambda x. f (f (f x)))$ 
+  \begin{align*}
+  ((\lambda m. \lambda n. m n)\ (\lambda f. \lambda x. f (f x)))\ (\lambda f. \lambda x. f (f (f x))) \\
+  (\lambda n.\ (\lambda f.\lambda x. f (f x)) n)\ (\lambda f.\lambda x. f (f (f x))) \\
+  \lambda x.\ (\lambda f.\lambda x. f (f (f x)))\ x\ ((\lambda f.\lambda x. f (f (f x))) x\ x) \\
+  \lambda x.\ \lambda x1.\ (\lambda f.\lambda x. f (f (f x)))\ x\ ((\lambda f.\lambda x. f (f (f x)))\ x\ x\ ((\lambda f.\lambda x. f (f (f x)))\ x\ x\ x1)) \\
+  \lambda x.\ \lambda x1.\ (\lambda x1. x (x (x\ x1)))\ ((\lambda f.\lambda x. f (f (f x)))\ x\ ((\lambda f.\lambda x. f (f (f x)))\ x\ x1)) \\
+  \lambda x.\ \lambda x1.\ x (x (x ((\lambda f.\lambda x. f (f (f x)))\ x\ ((\lambda f.\lambda x. f (f (f x)))\ x\ x1)))) \\
+  \lambda x.\ \lambda x1.\ x (x (x (x (x (x (\lambda f.\lambda x. f (f (f x)))\ x\ x1))))) \\
+  \lambda x.\ \lambda x1.\ x (x (x (x (x (x (\lambda x1. x (x (x\ x1)))\ x1))))) \\
+  \lambda x.\ \lambda x1.\ x (x (x (x (x (x (x (x (x\ x1)))))))) \\
+\end{align*}
+
+2. Explain what function on natural numbers $(\lambda m. \lambda n. m n)$ implements.
+
+The lambda expression is about applying one numeral to another numeral. Church numerals are a way to represent natural numbers using functions. For example, we can represent 3 through f(f(f(x))) or "applying a function twice". In this expression, 
+m is a numeral and n is another numeral and what it does is apply m to n. It takes two numerals or numebrs and applys one to the other like functions. This gives a way to combine the numerals and numbers using function application and not a direct operations
+such as addition or multiplication.
+
+\subsubsection{Comments and Questions}
+
+With the definition of lambda calculus in the basis of many programming languages, are there any issues that come when modeling complex data structures and alogrithms? If there are, how do programmers overcome them?
+
 \ldots
 
 \section{Lessons from the Assignments}
