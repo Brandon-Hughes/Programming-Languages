@@ -93,7 +93,7 @@
 During this week, there was a review of Git and being introduced to Latex and Lean. Some helpful commands include git add, commit, status, and push. 
 Through the website "https://sudorealm.com/blog/how-to-write-latex-documents-with-visual-studio-code-on-mac", we set up latex to be able to complete the weekly report.
 
-\subsubsection{Homework}
+\subsubsection{Homework} 
 
 1. Finish the Natural Number Game Tutorial World. \\
 \hspace*{2em}a) Show the completed work for levels 5 through 8. \\
@@ -311,9 +311,7 @@ In the beginning of the reading, it takes about how recursion is different from 
 
 For this homework assignment, I used ChatGPT to explore language interoperability, which refers to how different programming languages interact with one another to create a single system or application. In modern software development and application creation, it is common for multiple programming languages to be used together to meet different kinds of functions and performance requirements. As a result, being able to integrate between these languages flawless is essential for building efficient  and reliable systems. This report goes over some of the current methods used to ensure compatibility between programming languages and investigates ways to enhance these systems further. While many languages already possess some interoperability with one another, challenges arise when trying to bridge the gaps between the languages that were not designed to work together. These challenges can lead to issues such as performance inefficiencies, data type mismatches, and increase complexity in code maintenance. By examining these difficulties, potential improvements can be seen to create more solutions for the future. Additionally, advancements in tools, frameworks, and compiler technology could further enhance interoperability efforts. By improving in ways in which programming languages collaborate, developers will be able to build more versatile, efficient, and scalable systems. Addressing these challenges and making enhancements will lead to more seamless development processes and better applications.  
 
-\url{https://github.com/Brandon-Hughes/LLM_Literature_Review}
-
-
+\href{https://github.com/Brandon-Hughes/LLM_Literature_Review}{LLM Literature Review}
 
 \subsection{Week 4}
 
@@ -519,6 +517,116 @@ such as addition or multiplication.
 \subsubsection{Comments and Questions}
 
 With the definition of lambda calculus in the basis of many programming languages, are there any issues that come when modeling complex data structures and alogrithms? If there are, how do programmers overcome them?
+
+\subsection{Week 8/9}
+
+\subsubsection{Notes}
+
+This week focused on understanding an interpreter to solve lambda-calculus 
+expressions through substituting and evaluating expressions. We were given a 
+program and test expressions and had to create our test expressions to test 
+each function and understand how they are changing the expression to solve them. 
+Parse would break down the functions into the language that we are currently 
+using to be able to run it through a lark file that would be able to 
+interpret the expression. Without this step, it would be more complicated 
+to solve the expression. The Substitute would take 3 inputs in which it 
+would take the current tree, the name of the variable you are replacing, 
+and the replacement variable. Through this, we can show an example substitution 
+step where all the "names" inside of the "tree" are turned into "replacements." 
+Through testing, I learned that there were some times when you would run into 
+capture-avoiding substitution issues but through reading the function it solves 
+this issue by generating a fresh name. This is done by checking if the variable 
+character before the lambda is equal to the name you are replacing and if not 
+then it changes all of the current variables' characters into a fresh name. Lastly, 
+evaluate is our function that takes in the tree and returns the tree with the next 
+step being done and simplifies all parenthesis into the correct form. Through this, 
+we can see that each program can be simplified step by step and broken down into 
+individual portions that can be stepped through to ultimately solve it. By taking 
+this example, we can see that programs consist of a "lambda" or function and a 
+"replacement" or input and return a simplified version of what is being done to it.
+
+\subsubsection{Homework}
+
+1. Complete exercises 2-8. \\
+\textbf{Exercise 2: Explain why a b c d reduces to (((a b) c) d) and why (a) reduces to a.} \\
+The point of this exercise is to understand how simplifying parentheses works inside of the program. It adds parenthesis onto those that 
+go over the one character. If you would input "a b" it would add parentehsis around them to show that the current expression is "a and b". Then when you add c then d to the end, 
+you are applying those onto the a and b, once at a time. If you would put "c and d" into parenthesis then you would apply "c and d" onto "a and b".
+The reason why (a) reduces down into just a, is that you aren't creating an expression. You are just having this single a that reduces down into itself leaving only an a.\\
+\textbf{Exercise 3: How does capture avoiding substitution work? Investigate both by making relevant test cases and by looking at the source code. How is it implemented?}\\
+In the program, capture avoiding substitution works by setting the bound variables to another name, such as VAR1 and VAR2. This works by keeping the free variables as they are currently.
+When the program does lambda substitution, on line 76 it checks for if the variable is equal to the name that you are replacing. If it is then it returns the tree otherwise it will generate a "fresh name"
+Allowing for the program to change the name of the variable to something else. \\
+\textbf{Exercise 4: Do you always get the expected result? Do all computations reduce to normal form?}\\
+Not all computations reduce down into normal form as there more applications of certain functions that can be perofmed. An example of this is in a non-terminating computation such as the one we saw in cases. 
+Where the function would reduce into itself over and over again. If you apply this into the interpreter it will keep running into you arrive to a recurssion error. \\
+\textbf{Exercise 5: What is the smallest $\lambda$-expression you can find (minimal working example, MWE) that does not reduce to normal form?}\\
+\begin{align*}
+  &(\lambda f.\lambda x. \, (f \, x)) \, (\lambda f. \, f)
+\end{align*}
+\textbf{Exercise 7: How does the interpreter evaluate ((\textbackslash m.\textbackslash n. m n) (\textbackslash f.\text{x. f (f x)})) (\textbackslash f.\text{x. f (f (f x))})? Do a calculation similarly to when you evaluated ((\textbackslash m.\textbackslash n. m n) (\textbackslash f.\text{x. f (f x)})) (\textbackslash f.\text{x. f (f (f x))}) for the homework, but now follow precisely the steps taken by interpreter.py. Make a new line for each substitution.} \\
+\begin{align*}
+  &((\lambda m.\lambda n. \, m \, n) \, (\lambda f.\lambda x. \, f \, (f \, x))) \, (\lambda f.\lambda x. \, f \, (f \, (f \, x))) \\
+  &(\lambda Var1.((\lambda f.(\lambda x. \, f \, (f \, x))) \, Var1)) \, (\lambda f.\lambda x. \, f \, (f \, (f \, x))) \\
+  &((\lambda Var2.(\lambda Var4.(Var2 \, (Var2 \, Var4)))) \, (\lambda f.(\lambda x. \, f \, (f \, (f \, x))))) \\
+  &(\lambda Var5.((\lambda f.(\lambda x. \, f \, (f \, (f \, x)))) \, ((\lambda f.(\lambda x. \, f \, (f \, (f \, x)))) \, Var5))) \\
+\end{align*}
+\textbf{Exercise 8: Use ((\textbackslash m.\textbackslash n. m n) (\textbackslash f.\text{x. f (f x)})) (\textbackslash f.\text{x. f x}) as your input. Write out the trace of the interpreter in the format we used to picture the recursive trace of hanoi. Only write lines that contain calls to evaluate() or calls to substitute(). Add the line numbers.}\\
+\begin{align*}
+  &\text{12: evaluate } ((\lambda m.(\lambda n.(m \, n))) \, (\lambda f.(\lambda x.(f \, (f \, x)))) \, (\lambda f.(\lambda x.(f \, x)))) \\
+  &\hspace{5mm}{39: evaluate } ((\lambda m.(\lambda n.(m \, n))) \, (\lambda f.(\lambda x.(f \, (f \, x))))) \\
+  &\hspace{10mm}{39: evaluate } (\lambda m.(\lambda n.(m \, n))) \\
+  &\hspace{15mm}{50: } (\lambda m.(\lambda n.(m \, n))) \\
+  &\hspace{5mm}{44: substitute } (\lambda n.(m \, n)), \, m, \, (\lambda f.(\lambda x.(f \, (f \, x)))) \\
+  &\hspace{10mm}{45: evaluate } (\lambda Var1.((\lambda f.(\lambda x.(f \, (f \, x)))) \, Var1)) \\
+  &\hspace{15mm}{50: } (\lambda Var1.((\lambda f.(\lambda x.(f \, (f \, x)))) \, Var1)) \\
+  &\hspace{5mm}{44: substitute } ((\lambda f.(\lambda x.(f \, (f \, x)))) \, Var1), \, Var1 , \, (\lambda f.(\lambda x.(f \, x))) \\
+  &\hspace{10mm}{45: evaluate } ((\lambda Var2.(\lambda Var4.(Var2 \, (Var2 \, Var4)))) \, (\lambda f.(\lambda x.(f \, x)))) \\
+  &\hspace{15mm}{39: evaluate } (\lambda Var2.(\lambda Var4.(Var2 \, (Var2 \, Var4)))) \\
+  &\hspace{20mm}{50: } (\lambda Var2.(\lambda Var4.(Var2 \, (Var2 \, Var4)))) \\
+  &\hspace{5mm}{44: substitute } (\lambda Var4.(Var2 \, (Var2 \, Var4))), \, Var2, \, (\lambda f.(\lambda x.(f \, x))) \\
+  &\hspace{10mm}{45: evaluate } (\lambda Var5.((\lambda f.(\lambda x.(f \, x))) \, ((\lambda f.(\lambda x.(f \, x))) \, Var5))) \\
+  &\hspace{15mm}{50: return } (\lambda Var5.((\lambda f.(\lambda x.(f \, x))) \, ((\lambda f.(\lambda x.(f \, x))) \, Var5))) \\
+\end{align*}
+\subsubsection{Comments and Questions}
+
+Week 8: How does knowing lambda calculus help prove the fundamental structure of programming languages and aid in designing new ones? \\
+Week 9: Are we able to solve the expression with lamda calculus without changing it into the grammer and how much more complicated would it be to do the subtiutions?
+
+\subsection{Week 10}
+\subsubsection{Notes}
+
+Through the usage of an abstraction reduction system \(ARS\), we are able to show a relation between sets. 
+There are special situations when an ARS is an algorithm, an example of this being an interpreters. 
+An ARS is terminating if it does not allow an infinite computation. This means that you have the
+"size" of the problem or the number of steps you are making to solve for it and every application 
+of a rule makes the "size" smaller. An ARS is confluent if for every "peak" there is a "valley" 
+meaning that their are multiple paths that the problem can take but will end up at one ending. An 
+element has normal form if it is not reducible. If an element has only one normal form, the normal
+form can be said to be a unique normal form. If every element in the ARS has a unique normal form, then 
+the ARS has unique normal forms as well.  Through some additional theorems we are able to define some additional 
+theorems such as if an ARS is confluent and terinating then all elements reduce to a unique normal form. Some 
+examples of rewriting through ARS can be seen in high school algebra equations and calculators.
+
+\subsubsection{Homework}
+1. What did you find most challenging when working through Homework 8/9 and Assignment 3?\\
+2. How did you come up with the key insight for Assignment 3?\\
+3. What is your most interesting takeaway from Homework 8/9 and Assignment 3?\\
+
+The most challenging I thought was the creation of the minimal working example that wouldn't work in the program provided. Since, I understood
+how the program worked it was just thinking of ways that it wouldn't produce a simplified expression. With the help of my group members, I was 
+farther able to understand how we could create a minimum working example and be able to solve the problem inside of the code for situations where 
+it wouldn't simplfy. I wasn't able to come up with it through my own work but being able to be understand where the problem lies helped me to understand 
+how to create the solution for Assignment 3. The issue was in the evalute not solving for when a "lam" is in front and not an "app". The most interesting
+takeawy from solving homework 8/9 and assignment 3 was the understanding of how programs break down their functions into something much smaller. I 
+gained a deeper understanding of how programming langauges can actually read how certain inputs are needed and how they apply those inputs into the 
+call being made. Another understanding is how programs are actually similar to lambda calculus in that they are only being simplified from a bigger picture
+into something that is concise for the reader. 
+
+\subsubsection{Comments and Questions}
+
+When coming up with whether an abstraction reduction system is confluent or not, we are able to add intermediary steps to produce a confluent relation through starred relations. 
+Are we able to use this to support the idea behind not having normal forms, if we infinitely return back to the same element with with a starred relation.
 
 \ldots
 
