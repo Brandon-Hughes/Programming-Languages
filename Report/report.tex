@@ -2,7 +2,6 @@
 
 \usepackage{tikz} 
 \usetikzlibrary{automata, positioning, arrows} 
-
 \usepackage{amsthm}
 \usepackage[leqno]{amsmath}
 \usepackage{amsfonts}
@@ -627,6 +626,207 @@ into something that is concise for the reader.
 
 When coming up with whether an abstraction reduction system is confluent or not, we are able to add intermediary steps to produce a confluent relation through starred relations. 
 Are we able to use this to support the idea behind not having normal forms, if we infinitely return back to the same element with with a starred relation.
+
+\subsection{Week 11}
+\subsubsection{Notes}
+
+\textbf{In-Class Notes}
+
+(Exse 1 Bubble Sort) \\
+implementation: ba $\to$ ab \\
+$\;\stackrel{\ast}{\longleftrightarrow}\;$ \\
+w = v \\
+spec {if w and v have the same number of a's and b's} \\ 
+
+(Exse 2 XOR) \\ 
+implementation: \\
+aa $\to$ a \\
+bb $\to$ a \\
+ab $\to$ b \\
+ba $\to$ b \\
+- the ARS reduces its size with every step that it takes 
+- 3 normal forms: $"""$ (empty string), a, b\\
+- $bbbb = b^4$ \\
+- $b^{2(n+1)} \, , where n > 0$ \\
+- $1 * x = x$ \\
+- $\epsilon * w = w$ \\
+
+- Rules: \\
+  - $b^{2(n+1)} \, , so n > 0$\\
+  - $ba^n$\\
+  - if non-empty and even b's = a 
+  - if non-empty and odd b's - b
+
+
+(Exse 3 ) \\ 
+implementation: \\
+aa $\to$ a \\
+bb $\to$ b \\
+ba $\to$ ab \\
+ab $\to$ ba \\
+- does not terminate due to the last rules always being run \\ 
+- 3 normal forms: $"""$(empty string), a, b \\
+
+- 00 $\to$ 0 \\
+- 11 $\to$ 1 \\
+- 01 $\to$ 10 \\
+- 10 $\to$ 01 \\
+
+- bbaa $\to$  baba $\to$  abba $\to$  aba $\to$  aab $\to$  ab \\
+- bbaa $\to$  ba \\
+
+implementation: \\
+aa $\to$ a \\
+bb $\to$ b \\
+ba $\to$ ab \\
+ab $\to$ ba \\
+
+- at least one a no b = a
+- at least one b, no a = b 
+- at least one a, one b = ab 
+- if the two are equal then reduce them to lowest form, otherwise swap the positions
+
+\textbf{Summary}
+
+This week focused on String rewriting, which is rewriting strings using a specific rules and
+finding a pattern or understanding of what the rule is attempting to produce. This week we were
+able to see examples of string rewriting through bubble sort and XOR notation to further develop 
+our understanding. As you can see in the notes taken from in class above, in excersise 1 we explore
+the implementation of bubble sort and cases we would be able to deifne as equal. Through specifiying
+when sorts take place, we are able to say that two strings are equal if they contain the same number of 
+a's and b's since they will always end up at the same end goal. Since the process terminates whenever there 
+are all the a's on the left and all the b's on the right and depending on the steps that you take you will 
+always end up at the same string, the problem has a unique normal form such that we are able to determine 
+that. In excersize 2, we explore the implementation of an XOR string. The ARS terminates since with 
+every step that it takes, it reduces it's size and no matter the steps that you take you will always 
+end up at the same normal form it is also confluent. The normal forms for this problem consist of the 
+empty set, a, or b. The specification of this implementation is that if the string is non-empty and have 
+an even number of b's then it will end up in the a normal form, or if it's nonempty and have an odd 
+number of b's then it will end up in the b normal form. Otherwise, it's an empty set. 
+
+\subsubsection{Homework}
+
+Draw a picture for each of the ARSs.
+
+1. A = {} \\
+\begin{tikzpicture}[->, thick, node distance=2cm]
+\end{tikzpicture}
+
+2. A = {a} and R = {} \\
+\begin{tikzpicture}[->, thick, node distance=2cm]
+  \node[circle, draw] (a) {a};
+\end{tikzpicture}
+
+3. A = {a} and R = {(a,a)} \\
+\begin{tikzpicture}[->, thick, node distance=2cm]
+  \node[circle, draw] (a) {a};
+  \draw (a.west) .. controls +(left:0.75cm) and +(up:0.75cm) .. (a.north);
+\end{tikzpicture}
+
+4. A = {a,b,c} and R = {(a,b),(a,c)} \\
+\begin{tikzpicture}[->, thick, node distance=2cm]
+  \node[circle, draw] (a) {a};
+  \node[circle, draw, below left of=a] (b) {b};
+  \node[circle, draw, below right of=a] (c) {c};
+  \draw (a) -- (b);
+  \draw (a) -- (c);
+\end{tikzpicture}
+
+5. A = {a,b} and R = {(a,a),(a,b)} \\
+\begin{tikzpicture}[->, thick, node distance=2cm]
+  \node[circle, draw] (a) {a};
+  \node[circle, draw, right of=a] (b) {b};
+  \draw (a) -- (b);
+  \draw (a.west) .. controls +(left:0.75cm) and +(up:0.75cm) .. (a.north);
+\end{tikzpicture}
+
+6. A = {a,b,c} and R = {(a,b),(b,b)(a,c)} \\
+\begin{tikzpicture}[->, thick, node distance=2cm]
+  \node[circle, draw] (a) {a};
+  \node[circle, draw, below left of=a] (b) {b};
+  \node[circle, draw, below right of=a] (c) {c};
+  \draw (a) -- (b);
+  \draw (b.west) .. controls +(left:0.75cm) and +(down:0.75cm) .. (b.south);
+  \draw (a) -- (c);
+\end{tikzpicture}
+
+7. A = {a,b,c} and R = {(a,b),(b,b)(a,c),(c,c)} \\
+\begin{tikzpicture}[->, thick, node distance=2cm]
+  \node[circle, draw] (a) {a};
+  \node[circle, draw, below left of=a] (b) {b};
+  \node[circle, draw, below right of=a] (c) {c};
+  \draw (a) -- (b);
+  \draw (a) -- (c);
+  \draw (b.west) .. controls +(left:0.75cm) and +(down:0.75cm) .. (b.south);
+  \draw (c.east) .. controls +(right:0.75cm) and +(down:0.75cm) .. (c.south);
+\end{tikzpicture}
+
+
+Try to find an example of an ARS for each of the possible 8 combinations of confluent, terminating, and has unique normal forms. Draw pictures of these examples.
+
+T / T / T example: 
+
+\begin{tikzpicture}[->, thick, node distance=2cm]
+    \node[circle, draw] (a) {a};
+    \node[circle, draw, right of=a] (b) {b};
+    \draw (a) -- (b);
+\end{tikzpicture}
+
+T / T / F example: 
+
+Cannot exist due the Theorem that If an ARS is confluent and terminating then all elements reduce to a unique normal form. Since this is both confluent and terminating, it must have a unique normal form.
+
+T / F / T example: 
+
+\begin{tikzpicture}[->, thick, node distance=2cm]
+    \node[circle, draw] (a) {a};
+    \node[circle, draw, right of=a] (b) {b};
+    \draw (a) -- (b);
+    \draw (a.west) .. controls +(left:0.75cm) and +(up:0.75cm) .. (a.north);
+\end{tikzpicture}
+
+T / F / F example: 
+
+\begin{tikzpicture}[->, thick, node distance=2cm]
+  \node[circle, draw] (a) {a};
+  \node[circle, draw, right of=a] (b) {b};
+  \draw (a) -- (b);
+  \draw (b.east) .. controls +(right:0.75cm) and +(up:0.75cm) .. (b.north);
+\end{tikzpicture}
+
+F / T / T example: 
+
+Confluent and having a unique normal form must be the same, one cannot be true while the other is false since an ARS has unique normal forms if and only if it is confluent and normalising.
+
+F / T / F example: 
+
+\begin{tikzpicture}[->, thick, node distance=2cm]
+    \node[circle, draw] (a) {a};
+    \node[circle, draw, below left of=a] (b) {b};
+    \node[circle, draw, below right of=a] (c) {c};
+    \draw (a) -- (b);
+    \draw (a) -- (c);
+\end{tikzpicture}
+
+F / F / T example: 
+
+Same as above, confluent and having a unique normal form must be the same, one cannot be true while the other is false since an ARS has unique normal forms if and only if it is confluent and normalising.
+
+F / F / F example: 
+
+\begin{tikzpicture}[->, thick, node distance=2cm]
+    \node[circle, draw] (a) {a};
+    \node[circle, draw, below left of=a] (b) {b};
+    \node[circle, draw, below right of=a] (c) {c};
+    \draw (a) -- (b);
+    \draw (a) -- (c);
+    \draw (b.west) .. controls +(left:0.75cm) and +(down:0.75cm) .. (b.south);
+    \draw (c.east) .. controls +(right:0.75cm) and +(down:0.75cm) .. (c.south);
+\end{tikzpicture}
+
+\subsubsection{Comments and Questions}
+
+Since we can represent basic programs like bubble sort and XOR as an ARS, how does this help us understand the  logic and behavior of these programs better?
 
 \ldots
 
