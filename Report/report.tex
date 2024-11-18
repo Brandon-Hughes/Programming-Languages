@@ -3,7 +3,6 @@
 \usepackage{tikz} 
 \usetikzlibrary{automata, positioning, arrows} 
 \usepackage{amsthm}
-\usepackage[leqno]{amsmath}
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -828,7 +827,52 @@ F / F / F example:
 
 Since we can represent basic programs like bubble sort and XOR as an ARS, how does this help us understand the  logic and behavior of these programs better?
 
-\ldots
+\subsection{Week 12}
+
+\subsubsection{Notes}
+
+This week explored the concept of invariants and their significance through different systems, such as mathematics and programming. Invariants are properties that do not change when we apply rules to the systems. Formally, this can be defined as a function $P: A \to B$ for an Abstract Reduction System (ARS) $(A, \to)$ such that if $a \to b$, then $P(a) = P(b)$ for all $a, b \in A$. This means that even when you apply the function $P$ to $a$ and $b$, they will still be equal to each other. 
+
+An example of an invariant in an ARS is as follows: under the rule $ab \to ba$, invariants could include the total length of the string, the number of $a$'s or $b$'s, and the sum of $a$'s and $b$'s, since these are values that will never change no matter how the rule is applied. Strong invariants are symmetric and are the method of choice for studying equivalence classes, while weak invariants are appropriate if the direction of time is important.
+
+Furthermore, if $P$ is an invariant property of the ARS $(A, \to)$ and $P(a) = \text{true}$ and $P(b) = \text{false}$, then $\neg (a \overset{*}{\to} b)$, $\neg (a \overset{*}{\leftarrow} b)$, and $a$ and $b$ are in different equivalence classes. Invariants can be used to demonstrate that certain transformations or operations are impossible by showing that two elements belong to different equivalence classes.
+
+
+\subsubsection{Homework}
+\begin{align*}
+  \text{Rule: (fix (\textbackslash fact. \textbackslash n. if n=0 then 1 else n * fact (n-1))) $\rightarrow$ (fix (\textbackslash fact. \textbackslash n. if n=0))}
+\end{align*}
+
+\begin{align*}
+  \text{let rec fact = \textbackslash n. if n=0 then 1 else n * fact (n-1) in fact 3} & \quad \mathbf{def\ of\ let\ rec} \\
+  \text{let fact = (fix (\textbackslash fact. \textbackslash n. if n=0)) in fact 3} & \quad \mathbf{def\ of\ let} \\
+  \text{(\textbackslash fact. fact 3) (fix (\textbackslash fact. \textbackslash n. if n=0))} & \quad \mathbf{beta\ rule:\ substitute\ fix\ F} \\
+  \text{(fix (\textbackslash fact. \textbackslash n. if n=0)) 3} & \quad \mathbf{def\ of\ fix} \\
+  \text{(\textbackslash fact. \textbackslash n. if n=0) (fix (\textbackslash fact. \textbackslash n. if n=0)) 3} & \quad \mathbf{beta\ rule:\ substitute\ fix\ F} \\
+  \text{(\textbackslash n. if n=0 then 1 else n * (fix (\textbackslash fact. \textbackslash n1. if n1=0)) (n-1)) 3} & \quad \mathbf{beta\ rule:\ substitute\ 3} \\
+  \text{if 3=0 then 1 else 3 * (fix (\textbackslash fact. \textbackslash n1. if n1=0)) (3-1)} & \quad \mathbf{def\ of\ if} \\
+  \text{3 * (fix (\textbackslash fact. \textbackslash n1. if n1=0)) 2} & \quad \mathbf{def\ of\ fix} \\
+  \text{3 * (\textbackslash fact. \textbackslash n1. if n1=0) (fix (\textbackslash fact. \textbackslash n1. if n1=0)) 2} & \quad \mathbf{beta\ rule:\ substitute\ fix\ F} \\
+  \text{3 * (\textbackslash n1. if n1=0 then 1 else n1 * (fix (\textbackslash fact. \textbackslash n2. if n2=0)) (n1-1)) 2} & \quad \mathbf{beta\ rule:\ substitute\ 2} \\
+  \text{3 * (if 2=0 then 1 else 2 * (fix (\textbackslash fact. \textbackslash n2. if n2=0)) (2-1))} & \quad \mathbf{def\ of\ if} \\
+  \text{3 * (2 * (fix (\textbackslash fact. \textbackslash n2. if n2=0)) 1)} & \quad \mathbf{def\ of\ fix} \\
+  \text{3 * (2 * (\textbackslash fact. \textbackslash n2. if n2=0) (fix (\textbackslash fact. \textbackslash n2. if n2=0)) 1)} & \quad \mathbf{beta\ rule:\ substitute\ fix\ F} \\
+  \text{3 * (2 * (\textbackslash n2. if n2=0 then 1 else n2 * (fix (\textbackslash fact. \textbackslash n3. if n3=0)) (n2-1)) 1)} & \quad \mathbf{beta\ rule:\ substitute\ 1} \\
+  \text{3 * (2 * (if 1=0 then 1 else 1 * (fix (\textbackslash fact. \textbackslash n3. if n3=0)) (1-1)))} & \quad \mathbf{def\ of\ if} \\
+  \text{3 * (2 * (1 * (fix (\textbackslash fact. \textbackslash n3. if n3=0)) 0))} & \quad \mathbf{def\ of\ fix} \\
+  \text{3 * (2 * (1 * (\textbackslash fact. \textbackslash n3. if n3=0) (fix (\textbackslash fact. \textbackslash n3. if n3=0)) 0))} & \quad \mathbf{beta\ rule:\ substitute\ fix\ F} \\
+  \text{3 * (2 * (1 * (\textbackslash n3. if n3=0 then 1 else n3 * (fix (\textbackslash fact. \textbackslash n4. if n4=0)) (n3-1)) 0))} & \quad \mathbf{beta\ rule:\ substitute\ 0} \\
+  \text{3 * (2 * (1 * (if 0=0 then 1 else 0 * (fix (\textbackslash fact. \textbackslash n4. if n4=0)) (0-1))))} & \quad \mathbf{def\ of\ if} \\
+  \text{3 * (2 * (1 * 1))} & \quad \mathbf{def\ of\ *} \\
+  \text{3 * (2 * 1)} & \quad \mathbf{def\ of\ *} \\
+  \text{3 * 2} & \quad \mathbf{def\ of\ *} \\
+  \text{6} &
+\end{align*}
+
+
+\subsubsection{Comments and Questions}
+
+Are there any cases where a problem may not follow the invariant but still becomes solvable? Would that make the invariant invalid as a whole or would it just not be a good one?\ldots
 
 \section{Lessons from the Assignments}
 
