@@ -876,6 +876,46 @@ Are there any cases where a problem may not follow the invariant but still becom
 
 \section{Lessons from the Assignments}
 
+\subsection{Week 13}
+\subsubsection{Notes}
+
+This week we loked a comparison of using insertion sort in different programming languages and also furthered our problem solving skills through analzying problems. 
+While in different pgoramming languages the syntax is different, the overall idea behind how a function should work is the same. Through looking at it in multiple diffrerent languages,
+we are able to gain a better understanding of how problem solving is the basis of coding. Two design criterias, simplicity and naturallity are important compromises that must be made
+and are offened critiqued when it comes to building a language. The second part of class as analyzing two different problems and building a formula that would work to solve them.
+The first one was "What the Tortoise Said to Achilles", in which the Tortoise challenges the basis of logical reasoning. In which, he refusies to accept a conclusion unless
+and infinite number of justifications are provided, the Tortoise demonstarates an infinite regress problem in logic. The second one that we explored even deeper was the prisoner hat problem. 
+The goal of this was to get at least (n being number of prisoners) n-1 / n of the prisoner's to say the correct hat color when they can only see x amount in front of them. Where x is all of the people who are shorter than them.
+In class, we were able to create a reasonable answer of the first person, but were unable to give an easy formula for all the people following afterwards. 
+
+\subsubsection{Homework}
+
+Exercise 7: Consider the rewrite rules: \\
+\begin{align*}
+  ab &\rightarrow a \\
+  bb &\rightarrow b \\
+  aa &\rightarrow b
+\end{align*}
+
+Think of a and b as colours and an urn that has balls of colour a ("white") and b ("black"). Interpret the rewrite rules as rules about drawing balls from the urn. \\
+- If one ball is white and one ball is black, replace them with a single white ball. \\
+- If both are black, replace them with a single black ball. \\
+- If both are white, replace them with a single black ball.
+
+If you start with 198 black balls and 99 white balls, what is the colour of the last ball remaining? \\
+- Since adding two white balls make a black ball, there would have to be an even number to have only black remaining. Since there are 99 white balls, an odd number of white balls, the last ball would stay and absorb all the black balls. 
+
+The invariant for the problem is based on the parity of the white balls. If there are an even number of a's or white balls then, the final ball will be black but if it's odd then it will be white. \\
+The unique normal form is that all properties will end up in either a, b, or empty set. If you start with an empty set then it will end up in empty set, but if you start with an even number of a's (including 0) then you will end up in a. However, if you start with an odd number of a's, then you will end up in b. 
+
+If you start with n black balls and m white balls, the colour of the last ball will be based on this formula:
+If \( m \mod 2 = 1 \), then white; else if \( m \mod 2 = 0 \), then black; else empty set.
+
+
+\subsubsection{Comments and Questions}
+
+If we started adding colors to the prisoners hat problem, are we able to determinate how many rules we have to add based on the number of colors?
+
 \section{Conclusion}\label{conclusion}
 
 \begin{thebibliography}{99}
