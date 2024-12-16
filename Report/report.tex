@@ -75,12 +75,45 @@
 \maketitle
 
 \begin{abstract}
+  This report reflects on how theoretical concepts like parsing, recursion, and Turing completeness 
+  were integrated into practical programming tasks. Through assignments and group projects, we explored 
+  how these ideas connect to software engineering, such as building interpreters and solving logic puzzles.
+  Along the way, we faced challenges like managing grammar precedence, understanding capture-avoiding 
+  substitution, and applying lambda calculus, which pushed us to think critically and adapt. Working 
+  together as a team was key to overcoming these difficulties and deepened our understanding of 
+  programming language mechanics. Overall, this course gave us valuable insights into the theoretical 
+  foundations of programming languages and showed how they apply to real-world scenarios.
 \end{abstract}
 
 \setcounter{tocdepth}{3}
 \tableofcontents
 
 \section{Introduction}\label{intro}
+
+This report reflects on the concepts and experiences gained while taking programming languages at 
+Chapman University. The course aims to understand the creation of programming languages, how they work, 
+and to be able to design a basic programming language through accepting expressions. By combining a 
+practical and a theoretical component into our coursework, we were able to gain a perspective on how the 
+foundations of programming languages depend on topics like recursion, parking, and lambda calculus to 
+connect to a larger field of software engineering.
+
+The report is organized by having weekly updates added onto the report, a summary of important lessons 
+from our two group assignments and project, and lastly a conclusion of topics learned, what we liked, 
+and improvements to be made. Each weekly update contains a summary of the notes given in class and 
+through other learning such as videos and books, a homework assignment assigned and completed, and 
+a higher-level question regarding the information provided to be answered or proposed. The lessons 
+contain a detailed reflection on key concepts and how they are applied to the program we created, as 
+well as challenges faced during the creation of the programs and how we were able to overcome them by 
+working together.
+
+Understanding the theoretical portions assisted with the writing of interpreters and gained an outlook 
+on some of the questions guiding programming language research. The practical portion was applying those 
+theories to building multiple projects that will be extended to a larger functional and/or imperative 
+programming language.
+
+Personally, while the course was ultimately challenging to understand multiple theorems and apply 
+them to our own projects through repetition or creating new ideas, it pushed me to think critically 
+about problems and approach programming from a different perspective.
 
 \section{Week by Week}\label{homework}
 
@@ -516,32 +549,50 @@ such as addition or multiplication.
 
 With the definition of lambda calculus in the basis of many programming languages, are there any issues that come when modeling complex data structures and alogrithms? If there are, how do programmers overcome them?
 
-\subsection{Week 8/9}
+\subsection{Week 8}
 
 \subsubsection{Notes}
 
-This week focused on understanding an interpreter to solve lambda-calculus 
-expressions through substituting and evaluating expressions. We were given a 
-program and test expressions and had to create our test expressions to test 
-each function and understand how they are changing the expression to solve them. 
-Parse would break down the functions into the language that we are currently 
-using to be able to run it through a lark file that would be able to 
-interpret the expression. Without this step, it would be more complicated 
-to solve the expression. The Substitute would take 3 inputs in which it 
-would take the current tree, the name of the variable you are replacing, 
-and the replacement variable. Through this, we can show an example substitution 
-step where all the "names" inside of the "tree" are turned into "replacements." 
-Through testing, I learned that there were some times when you would run into 
-capture-avoiding substitution issues but through reading the function it solves 
-this issue by generating a fresh name. This is done by checking if the variable 
-character before the lambda is equal to the name you are replacing and if not 
-then it changes all of the current variables' characters into a fresh name. Lastly, 
-evaluate is our function that takes in the tree and returns the tree with the next 
-step being done and simplifies all parenthesis into the correct form. Through this, 
-we can see that each program can be simplified step by step and broken down into 
-individual portions that can be stepped through to ultimately solve it. By taking 
-this example, we can see that programs consist of a "lambda" or function and a 
-"replacement" or input and return a simplified version of what is being done to it.
+This week, we focused on understanding an interpreter to solve lambda-calculus expressions 
+by substituting and evaluating expressions. The assignment involved analyzing a provided 
+program and test expressions while creating our own test cases to examine each function's 
+behavior. A key component of this process was the parse function, which broke down the
+ given functions into a language that could be interpreted by a lark file. This step was 
+ essential, as it allowed the expressions to be effectively processed and evaluated, 
+ simplifying the overall problem-solving process. Without parsing, handling expressions 
+ directly would be far more complex. The substitute function played a central role by 
+ taking three inputs: the current tree, the variable name to be replaced, and the replacement 
+ variable. This function demonstrated how substitution occurs, transforming all instances of 
+ the specified variable in the tree into the replacement value. During testing, I encountered 
+ capture-avoiding substitution issues, but these were resolved within the function by 
+ generating fresh variable names. This involved checking if the variable character 
+ preceding the lambda matched the replacement target. If not, the function created 
+ unique variable names to avoid conflicts, ensuring accurate substitution.
+
+\subsubsection{Comments and Questions}
+
+How does knowing lambda calculus help prove the fundamental structure of programming languages and aid in designing new ones?
+
+\subsection{Week 9}
+
+\subsubsection{Notes}
+
+Another essential function we explored was evaluate, which simplifies 
+expressions step by step. It takes the tree as input, processes it, and 
+returns a simplified version of the expression by reducing parentheses and 
+applying the appropriate transformations. This iterative process highlights 
+how complex expressions can be decomposed into smaller, more manageable steps 
+until they reach their simplest form. By breaking the program into distinct 
+components like lambdas (functions) and replacements (inputs), we learned to 
+approach problem-solving in a systematic way. Each evaluation step builds on the 
+previous one, illustrating the incremental nature of simplification in lambda 
+calculus. This exercise emphasized the importance of precision and the ability to 
+debug functions effectively, as each step is critical to achieving the correct result. 
+By working through these tasks, I gained a deeper understanding of how interpreters 
+and lambda-calculus expressions function, as well as how programs are constructed 
+and executed. The process of substitution, parsing, and evaluation provided 
+valuable insights into functional programming and the mechanics of solving 
+computational problems systematically.
 
 \subsubsection{Homework}
 
@@ -588,8 +639,7 @@ Where the function would reduce into itself over and over again. If you apply th
 \end{align*}
 \subsubsection{Comments and Questions}
 
-Week 8: How does knowing lambda calculus help prove the fundamental structure of programming languages and aid in designing new ones? \\
-Week 9: Are we able to solve the expression with lamda calculus without changing it into the grammer and how much more complicated would it be to do the subtiutions?
+Are we able to solve the expression with lamda calculus without changing it into the grammer and how much more complicated would it be to do the subtiutions?
 
 \subsection{Week 10}
 \subsubsection{Notes}
@@ -874,8 +924,6 @@ Furthermore, if $P$ is an invariant property of the ARS $(A, \to)$ and $P(a) = \
 
 Are there any cases where a problem may not follow the invariant but still becomes solvable? Would that make the invariant invalid as a whole or would it just not be a good one?\ldots
 
-\section{Lessons from the Assignments}
-
 \subsection{Week 13}
 \subsubsection{Notes}
 
@@ -916,7 +964,127 @@ If \( m \mod 2 = 1 \), then white; else if \( m \mod 2 = 0 \), then black; else 
 
 If we started adding colors to the prisoners hat problem, are we able to determinate how many rules we have to add based on the number of colors?
 
+\section{Lessons from the Group Assignments and Project}
+
+\textbf{Programming Assignment 3:}
+
+For Programming Assignment 3, I worked with Joseph Calise after both of us completed Exercises 0-9 
+independently. Following this, I assisted with testing the program and structuring it in a way that 
+ensured we both fully understood how the program was compiled and executed. This assignment helped us 
+gain a foundational understanding of how a basic interpreter is created, particularly how it parses 
+grammar to convert expressions into a format readable by the program. Additionally, I learned how the 
+interpreter handles capture-avoiding substitution and how we adapted it to work for the minimum working 
+examples and other test cases.
+
+One technical challenge I faced was creating the minimum working example. Initially, I wasn’t sure 
+where to start, so I sought help from Joseph, particularly for Exercise 5, which gave me the 
+guidance needed to complete the rest of the assignment. During testing, we expanded beyond the 
+provided test cases by creating additional examples for the program to evaluate. We analyzed whether 
+the program would compile correctly or encounter errors by running it through various scenarios, 
+including an artificial intelligence chatbot, to identify potential weaknesses.
+
+Some theoretical concepts were particularly helpful in this assignment. For example, I learned 
+how capture-avoiding substitution works by systematically renaming variables to prevent 
+incorrect substitutions. Additionally, studying recursion stacks, such as in the Tower of Hanoi 
+example, taught me how to build solutions incrementally. This approach informed our workflow: 
+starting with the minimum working example and progressively building a functional program. 
+If the program worked correctly for a smaller example, it was likely to handle larger, more 
+complex cases as well.
+
+Through this assignment, I developed a deeper understanding of how programs actually run. I 
+realized that much of programming involves syntactic "sugar" layered over fundamental logic. 
+Interpreters transform code into grammar that the system can process, rather than executing the 
+code as written. This insight highlighted the similarities across programming languages, as many 
+share the same core logic even when the syntax differs.
+
+\textbf{Programming Assignment 4:}
+
+For Programming Assignment 4, I worked with Joseph Calise, Greg Chinnici, and Quillan Gee throughout 
+most of the project. This assignment built upon Programming Assignment 2, which served as our starting 
+point. Instead of evenly dividing the work, we each began with our own tasks and collaborated to 
+integrate our contributions into a single working solution. Using Discord, we were able to work 
+independently and communicate effectively to complete the assignment.
+
+The first milestone of this assignment involved creating a basic calculator that supported lambda 
+functions and negation. Since Assignment 2 focused on similar functionality (excluding lambda functions), 
+I was able to extend the grammar from the previous assignment. The main technical challenge here was 
+ordering and naming the grammar rules to ensure that the program simplified expressions correctly 
+without breaking or executing steps in the wrong order. Additionally, we had to create an evaluate 
+function and a substitute function that worked correctly. We reused code from Assignment 3 as a 
+foundation and extended it for this assignment, ensuring proper functionality. This milestone 
+largely served as a review, combining concepts from the earlier assignments while introducing the 
+new challenge of managing grammar precedence.
+
+The second milestone required adding conditional statements, boolean expressions, and fixed-point 
+combinators. While we were provided with an ambiguous grammar as a starting point, it was our task to 
+order the grammar correctly so that the new features—conditional statements and boolean 
+expressions—were processed before basic arithmetic operations. During this milestone, we again 
+worked independently before coming together to finalize a solution. One significant challenge 
+I faced was handling the fix function. Initially, it added everything into a new tuple instead of 
+correctly modifying the existing one. Through class collaboration, our group discovered that applying 
+fix using a lambda resolved the issue. From this milestone, we learned how to incorporate conditional 
+statements, boolean expressions, and fixed-point combinators into the calculator, as well as how the 
+evaluate function processed inputs and returned tuples. The fix function in particular helped us better
+understand how the interpreter handled recursive evaluation.
+
+The third milestone involved adding sequencing and operations for constructing and destructing lists. 
+Like the previous milestone, we worked independently during a break and reconvened in class to address 
+challenges. A key technical issue was ensuring the program treated lists as single entities rather 
+than reading them as separate elements (e.g., a number and a list). Joseph addressed this challenge 
+by creating a preprocessor that used regular expressions to identify lists and wrap them in parentheses 
+as tuples. Using debugging techniques, such as setting breakpoints and running the code line by line,
+I identified issues related to the substitution of head and tail due to missing elif statements. This 
+milestone further enhanced my understanding of the evaluate and substitute functions and how programs 
+create and interact with different data types. Whether it was developing the preprocessor or modifying 
+the grammar to handle lists, this milestone demonstrated how interpreters process inputs and produce 
+consistent outputs, even when the internal mechanisms vary.
+
+One unresolved challenge was debugging the insertion sort implementation. While we couldn't identify 
+the exact issue, running the code line by line helped us trace the problem to the evaluate function.
+Despite this, we gained valuable insights into how the program processed different data types and 
+how outputs were generated. Understanding these processes was the most significant takeaway from this 
+milestone.
+
+\textbf{Conclusion:}
+
+Through Programming Assignments 3 and 4, I gained a solid understanding of interpreters, including 
+key concepts like capture-avoiding substitution, recursion, and grammar precedence. Collaborating 
+with my peers taught me the importance of combining individual efforts into a cohesive solution 
+while tackling challenges like fix evaluation and list processing. These projects strengthened 
+my understanding of programming language mechanics and how theory informs practical implementation, 
+lessons I will apply to future work.
+
 \section{Conclusion}\label{conclusion}
+
+While this course was challenging, particularly in the theoretical portions, I was able to understand 
+most of the topics and how they connect to the wider world of software engineering. Through this 
+course, we explored how proofs are created to prove theorems about math and how those concepts apply 
+to the programs we create. Most importantly, we learned to use recursion to simplify programs into 
+smaller versions of themselves. Other topics we covered included parsing, higher-order functions, and 
+Turing completeness. These concepts are essential to software engineering because parsing enables us 
+to read calls for functions through inputs and return outputs, higher-order functions allow us to 
+insert functions to output another function, and Turing completeness helps us prove that programs or 
+computations are theoretically calculable. While some topics were easier to understand than others, 
+everything came together during programming assignment 4, where I could see how all the concepts 
+coincided into one cohesive course. The course explained well how programming languages read the 
+programs we write and how syntactical sugar is created. At the core, most programs run similarly 
+but interpret syntax differently based on their documentation. This process involves parsing the 
+program into functions and inserts, evaluating them, and sometimes substituting different values, 
+as we did in programming assignments 2 through 4. These steps reinforced how theoretical ideas 
+translate into practical tools for building software. Among all the topics, I found invariants and 
+puzzle-solving to be the most interesting since I love brain teasers. Invariants introduced a new way 
+to approach puzzles—not just by searching for answers but by understanding why answers might not exist or 
+finding examples where solutions aren't possible. For example, invariants let me view problems from a different 
+angle, identifying patterns and constraints that I might have missed otherwise. However, learning about invariants 
+earlier in the course wouldn’t have worked because we needed foundational tools to define and solve puzzles effectively. 
+One unique aspect of the course was the restriction on using laptops for note-taking during lectures. This 
+required us to focus on remembering concepts discussed in class rather than relying solely on written notes. 
+While this was useful in some ways, I would suggest either allowing laptops strictly for note-taking or updating 
+the online notes to reflect any additional ideas explored during lectures. This would make it easier to reference 
+concepts later and ensure no important details are missed. Overall, this course gave me a better understanding of 
+how programming languages function and how theoretical concepts apply to practical software engineering. While it 
+was challenging at times, the integration of theory and application made it a valuable experience that ties 
+directly into the wider world of software engineering.
 
 \begin{thebibliography}{99}
 \bibitem[label]{citekey} Andrew Moshier, \href{https://canvas.chapman.edu/courses/66029/files/6581500?module_item_id=2280521}{Contemporary Discrete Mathematics}, M\&H Publishing, 2024
